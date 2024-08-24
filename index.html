@@ -133,6 +133,7 @@
         <p>Pertama, pastikan Anda sudah menginstal Python Kemudian, instal dependensi yang diperlukan:</p>
         <div class="code-block">
             <pre><code>pip3 install requests</code></pre>
+            <pre><code>pip3 install git+https://github.com/TeamKillerX/RyuzakiLib</code></pre>
         </div>
 
         <h3>Basic Usage</h3>
@@ -172,6 +173,38 @@ with open(file_path, "rb") as file:
 
 response_json = response.json()
 print(response_json)</code></pre>
+        </div>
+
+        <h3>FLUX IMAGE GENERATE</h3>
+        <div class="code-block">
+            <pre><code>import requests
+
+url = "https://randydev-ryuzaki-api.hf.space/api/v1/akeno/fluxai"
+
+data = {
+    "user_id": 1191668125,
+    "args": "Generate an image of a futuristic city at sunset"
+}
+
+response = requests.post(url, json=data)
+
+if response.status_code == 200:
+    with open('response_image.jpg', 'wb') as f:
+        f.write(response.content)
+    print("Image saved successfully.")
+else:
+    print("Error:", response.status_code, response.text)</code></pre>
+        </div>
+
+        <h3>Cloudflare Meta</h3>
+        <div class="code-block">
+            <pre><code>from RyuzakiLib import CloudFlare
+
+account_id = "your account id here"
+api_token = "token here"
+response = await CloudFlare.run(prompt="hello world", account_id=account_id, api_token=api_token)
+
+print(response)</code></pre>
         </div>
 
         <h2>Closing</h2>
